@@ -15,6 +15,13 @@ app.get("/api/hello", async (req, res)=>{
     })
 })
 
+app.post('/api/games', async (req, res) => {
+    const startedAt = new Date()
+    console.log(`startedAt = ${startedAt}`)
+
+    res.status(201).end()
+})
+
 app.use(errorHandler)
 
 app.listen(PORT, ()=>{
