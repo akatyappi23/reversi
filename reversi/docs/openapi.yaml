@@ -1,46 +1,72 @@
 openapi: '3.0.3'
 
 info:
-  title: reversi
+  title: udemy-reversi-webapp
   version: 1.0.0
 
 paths:
   /api/games:
+    get:
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  games:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: integer
+                          example: 1
+                        winnerDisc:
+                          type: integer
+                          example: 1
+                        startedAt:
+                          type: string
+                          example: 2017-07-21T17:32:28Z
+
     post:
-      response:
+      responses:
         201:
-          discription: created
+          description: Created
 
   /api/games/latest/turns/{turnCount}:
     parameters:
-      - name : turnCount
+      - name: turnCount
         in: path
         schema:
-        type: integer
+          type: integer
         required: true
     get:
       responses:
         200:
-          discription: OK
+          description: OK
           content:
-            applycation/json:
-              schema: 
+            application/json:
+              schema:
                 type: object
                 properties:
                   turnCount:
                     type: integer
                     example: 1
-                  bord:
+                  board:
                     type: array
                     example:
-                      [[0, 0, 0, 0, 0, 0, 0, 0],
-                       [0, 0, 0, 0, 0, 0, 0, 0],
-                       [0, 0, 0, 0, 0, 0, 0, 0],
-                       [0, 0, 0, 1, 2, 0, 0, 0],
-                       [0, 0, 0, 2, 1, 0, 0, 0],
-                       [0, 0, 0, 0, 0, 0, 0, 0],
-                       [0, 0, 0, 0, 0, 0, 0, 0],
-                       [0, 0, 0, 0, 0, 0, 0, 0],]
+                      [
+                        [0, 0, 0, 0, 0, 0, 0, 0],
+                        [0, 0, 0, 0, 0, 0, 0, 0],
+                        [0, 0, 0, 0, 0, 0, 0, 0],
+                        [0, 0, 0, 1, 2, 0, 0, 0],
+                        [0, 0, 0, 2, 1, 0, 0, 0],
+                        [0, 0, 0, 0, 0, 0, 0, 0],
+                        [0, 0, 0, 0, 0, 0, 0, 0],
+                        [0, 0, 0, 0, 0, 0, 0, 0]
+                      ]
                   nextDisc:
                     type: integer
                     example: 1
@@ -52,10 +78,10 @@ paths:
     post:
       requestBody:
         content:
-          applycation/json:
+          application/json:
             schema:
               type: object
-              properties: 
+              properties:
                 turnCount:
                   type: integer
                   example: 1
@@ -67,12 +93,10 @@ paths:
                       example: 1
                     x:
                       type: integer
-                      example: 1
+                      example: 0
                     y:
                       type: integer
-                      example: 1
-
-
-
-
-
+                      example: 0
+      responses:
+        201:
+          description: Created
